@@ -63,6 +63,9 @@ class Users
     #[ORM\OneToMany(targetEntity: Rents::class, mappedBy: 'owner')]
     private Collection $rents;
 
+    #[ORM\ManyToOne(inversedBy: 'sender')]
+    private ?UsersExchange $usersExchange = null;
+
     public function __construct()
     {
         $this->rentingGames = new ArrayCollection();
@@ -274,6 +277,18 @@ class Users
                 $rent->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUsersExchange(): ?UsersExchange
+    {
+        return $this->usersExchange;
+    }
+
+    public function setUsersExchange(?UsersExchange $usersExchange): static
+    {
+        $this->usersExchange = $usersExchange;
 
         return $this;
     }
