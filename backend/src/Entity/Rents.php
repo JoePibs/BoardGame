@@ -41,6 +41,9 @@ class Rents
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\Column]
+    private ?bool $isValidated = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +153,18 @@ class Rents
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function isValidated(): ?bool
+    {
+        return $this->isValidated;
+    }
+
+    public function setValidated(bool $isValidated): static
+    {
+        $this->isValidated = $isValidated;
 
         return $this;
     }
